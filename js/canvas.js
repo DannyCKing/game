@@ -43,6 +43,7 @@ function draw() {
         drawBullets();
         drawEnemies();
         drawShip();
+    	drawExplosion();
     }
     //requestAnimationFrame(draw);
 }
