@@ -1,5 +1,3 @@
-var particles = [];
-
 var stars = [];
 function removeStars() {
     
