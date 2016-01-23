@@ -73,7 +73,7 @@ function decreaseEnemyHealth(i) {
     if (enemy.Health <= 0) {
         //console.log("Killed");
         enemies.splice(i, 1);
-        
+        makeStars(enemy.X, enemy.Y);
         if(enemies.length == 0){
             levelUp();
         }
