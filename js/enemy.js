@@ -61,7 +61,14 @@ function createEnemyInSection(section, row) {
 
 function advanceEnemies() {
     for (var i = 0; i < enemies.length; i++) {
+        if(enemies[i] &&  enemies[i].Y > canvas.height)
+        {
+             enemies.splice(i, 1);
+        }
+        else
+        {
         enemies[i].Y = enemies[i].Y + 1;
+        }
     }
 }
 

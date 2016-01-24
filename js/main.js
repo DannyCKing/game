@@ -39,15 +39,16 @@ $(document).ready(function () {
 
     // draw updates and move the bullets
     window.setInterval(function () {
-        draw();
+        //draw();
+    }, TIME_INTERVAL);
+
+    animate();
+    window.setInterval(function () {
+        //moveBullets();
     }, TIME_INTERVAL);
 
     window.setInterval(function () {
-        moveBullets();
-    }, TIME_INTERVAL);
-
-    window.setInterval(function () {
-        advanceEnemies();
+        //advanceEnemies();
     }, 100);
     
 
@@ -63,11 +64,11 @@ $(document).ready(function () {
     
     //see if we are moving
     window.setInterval(function () {
-        checkMovement();
+        //checkMovement();
     }, 1);
 
     // see if we have fired our weapons
     window.setInterval(function () {
-        checkFire();
+        //checkFire();
     }, 100);
 });

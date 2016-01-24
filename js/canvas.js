@@ -2,7 +2,12 @@ var canvas;
 
 var ctx;
 
-var TIME_INTERVAL = 10;
+// A variable to store the requestID.
+var requestId;
+
+var isCurrentlyDrawing = false;
+
+var TIME_INTERVAL = 1000 / 60;
 
 var leftWall;
 
@@ -12,9 +17,15 @@ var sectionWidth;
 
 var SECTIONS = 6.0;
 
+var fps = 30;
+var now;
+var then = Date.now();
+var interval = 1000/fps;
+var delta;
+
 function clear() {
     if (ctx) {
-        
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         // ctx.clearRect(ship.X, ship.Y, ship.Width, ship.Height);
         // if(enemies > 0)
@@ -33,18 +44,26 @@ function clear() {
     }
 }
 
-function draw() {
-    //requestID = requestAnimationFrame(animate);
-    //requestAnimFrame(draw);
-    
-    
+function animate() {
+     
+    now = Date.now();
+    delta = now - then;
+     
+    if (delta > interval) {
     clear();
-    if (ctx) {
-        drawBullets();
-        drawEnemies();
-        drawShip();
-    	drawExplosion();
+    
+    moveBullets();
+    checkMovement();
+    advanceEnemies();
+    checkFire();
+    //decreaseEnemyHealth(0);
+    drawBullets();
+    drawEnemies();
+    drawShip();
+    drawExplosion();
+    isCurrentlyDrawing = false;
     }
+    window.requestAnimationFrame(animate);
     //requestAnimationFrame(draw);
 }
 
@@ -53,7 +72,7 @@ function setCanvasAndContext() {
     if (canvas.getContext) {
         ctx = canvas.getContext('2d');
     }
-    
+
     sectionWidth = canvas.width / SECTIONS;
     leftWall = sectionWidth;
     rightWall = canvas.width - sectionWidth;

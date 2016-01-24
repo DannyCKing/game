@@ -28,20 +28,22 @@ function fireBullet() {
     if(bulletLength> bulletMax)
     {
         bulletMax = bulletLength;
-        console.log(bulletMax);
+        //console.log(bulletMax);
     }
     //bulletSound.play();
 	new Audio("Audio/bullet.mp3").play();
 }
 
 function moveBullets() {
+
+    
 	var length = bullets.length;
 	//console.log("Bullet: " + i + ".  Length : "  + length);
 	//console.log("My Length : "  + bulletLength + " Their Length : "  + length);
 
 	for (var i = 0; i < bulletLength; i++) {
 		var bullet = bullets[i];
-		if (bullet.Y < -50) {
+		if (bullet.Y < -0) {
 			bulletLength = bulletLength - 1;
 			bullets.splice(i, 1);
 			//console.log("REMOVED : My Length : "  + bulletLength + " Their Length : "  + bullets.length);
